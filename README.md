@@ -38,7 +38,6 @@ $ python main-gpu.py           # gpu version
 ## Dependencies
 * [pytorch](https://github.com/pytorch/pytorch)
 * [pytorch-vision](https://github.com/pytorch/vision)
-* [gym](https://github.com/openai/gym)   
 
 
 <br/>
