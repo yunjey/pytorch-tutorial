@@ -9,18 +9,18 @@ This repository provides tutorial code for deep learning researchers to learn [P
 
 ## Table of Contents
 
-* [PyTorch Basics](https://github.com/yunjey/pytorch-tutorial/blob/master/00%20-%20PyTorch%20Basics/main.py)
-* [Linear Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/04%20-%20Linear%20Regression/main.py)
-* [Logistic Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/05%20-%20Logistic%20Regression/main.py)
-* [Feedforward Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/01%20-%20Feedforward%20Neural%20Network/main.py)
-* [Convolutional Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/02%20-%20Convolutional%20Neural%20Network/main.py)
-* [Deep Residual Network](https://github.com/yunjey/pytorch-tutorial/blob/master/03%20-%20Deep%20Residual%20Network/main-gpu.py)
-* [Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/06%20-%20Recurrent%20Neural%20Network/main.py)
-* [Bidirectional Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/07%20-%20Bidirectional%20Recurrent%20Neural%20Network/main.py)
-* [Language Model (RNNLM)](https://github.com/yunjey/pytorch-tutorial/blob/master/09%20-%20Language%20Model/main-gpu.py)
+* [PyTorch Basics](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/00%20-%20PyTorch%20Basics/main.py)
+* [Linear Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/01%20-%20Linear%20Regression/main.py)
+* [Logistic Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/02%20-%20Logistic%20Regression/main.py)
+* [Feedforward Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/03%20-%20Feedforward%20Neural%20Network/main.py)
+* [Convolutional Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/04%20-%20Convolutional%20Neural%20Network/main.py)
+* [Deep Residual Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/05%20-%20Deep%20Residual%20Network/main.py)
+* [Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/06%20-%20Recurrent%20Neural%20Network/main.py)
+* [Bidirectional Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/07%20-%20Bidirectional%20Recurrent%20Neural%20Network/main.py)
+* [Language Model (RNNLM)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/09%20-%20Language%20Model/main.py)
 * Image Captioning (CNN-RNN)
-* [Generative Adversarial Network](https://github.com/yunjey/pytorch-tutorial/blob/master/08%20-%20Generative%20Adversarial%20Network/main.py)
-* [Deep Q-Network and Q-learning (WIP)](https://github.com/yunjey/pytorch-tutorial/blob/master/10%20-%20Deep%20Q%20Network/dqn13.py)
+* [Generative Adversarial Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/08%20-%20Generative%20Adversarial%20Network/main.py)
+* [Deep Q-Network and Q-learning (WIP)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/10%20-%20Deep%20Q%20Network/dqn13.py)
 
 
 <br/>
@@ -28,7 +28,7 @@ This repository provides tutorial code for deep learning researchers to learn [P
 ## Getting Started
 ```bash
 $ git clone https://github.com/yunjey/pytorch-tutorial.git
-$ cd pytorch-tutorial/project/
+$ cd pytorch-tutorial/tutorials/project_path
 $ python main.py               # cpu version
 $ python main-gpu.py           # gpu version
 ```
