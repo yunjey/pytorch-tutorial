@@ -43,6 +43,7 @@ $ python main-gpu.py           # gpu version
 <br/>
 
 ## Future Work
+* [Other GAN Models](https://github.com/zhangqianhui/AdversarialNetsPapers)
 * [One-shot Learning](https://arxiv.org/abs/1606.04080)
 * [Question Answering](https://rajpurkar.github.io/SQuAD-explorer/)
 * [Visual Question Answering](http://www.visualqa.org/)
