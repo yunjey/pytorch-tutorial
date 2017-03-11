@@ -10,8 +10,8 @@ This repository provides tutorial code for deep learning researchers to learn [P
 ## Table of Contents
 
 * [PyTorch Basics](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/00%20-%20PyTorch%20Basics/main.py)
-* [Linear Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/01%20-%20Linear%20Regression/main.py)
-* [Logistic Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/02%20-%20Logistic%20Regression/main.py)
+* [Linear Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/01%20-%20Linear%20Regression/main.py#L24-L31)
+* [Logistic Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/02%20-%20Logistic%20Regression/main.py#35-42)
 * [Feedforward Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/03%20-%20Feedforward%20Neural%20Network/main.py)
 * [Convolutional Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/04%20-%20Convolutional%20Neural%20Network/main.py)
 * [Deep Residual Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/05%20-%20Deep%20Residual%20Network/main.py)
