@@ -55,7 +55,7 @@ def build_vocab(json, threshold):
     return vocab
 
 def main():
-    vocab = create_vocab(json='./data/annotations/captions_train2014.json',
+    vocab = build_vocab(json='./data/annotations/captions_train2014.json',
                          threshold=4)
     with open('./data/vocab.pkl', 'wb') as f:
         pickle.dump(vocab, f, pickle.HIGHEST_PROTOCOL)
