@@ -130,7 +130,6 @@ for epoch in range(80):
         optimizer = torch.optim.Adam(resnet.parameters(), lr=lr) 
 
 # Test
-resnet.eval()
 correct = 0
 total = 0
 for images, labels in test_loader:
