@@ -59,3 +59,6 @@ plt.plot(x_train, y_train, 'ro', label='Original data')
 plt.plot(x_train, predicted, label='Fitted line')
 plt.legend()
 plt.show()
+
+# Save the Model
+torch.save(model, 'model.pkl')

@@ -11,12 +11,12 @@ batch_size = 100
 learning_rate = 0.001
 
 # MNIST Dataset
-train_dataset = dsets.MNIST(root='./data/',
+train_dataset = dsets.MNIST(root='../data/',
                             train=True, 
                             transform=transforms.ToTensor(),
                             download=True)
 
-test_dataset = dsets.MNIST(root='./data/',
+test_dataset = dsets.MNIST(root='../data/',
                            train=False, 
                            transform=transforms.ToTensor())
 
@@ -77,7 +77,7 @@ for epoch in range(num_epochs):
                    %(epoch+1, num_epochs, i+1, len(train_dataset)//batch_size, loss.data[0]))
 
 # Test the Model
-cnn.eval()  
+cnn.eval()  # Change model to 'eval' mode (BN uses moving mean/var).
 correct = 0
 total = 0
 for images, labels in test_loader:
@@ -88,3 +88,6 @@ for images, labels in test_loader:
     correct += (predicted == labels).sum()
 
 print('Test Accuracy of the model on the 10000 test images: %d %%' % (100 * correct / total))
+
+# Save the Trained Model
+torch.save(cnn, 'cnn.pkl')

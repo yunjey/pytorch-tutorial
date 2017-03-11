@@ -14,12 +14,12 @@ transform = transforms.Compose([
     transforms.ToTensor()])
 
 # CIFAR-10 Dataset
-train_dataset = dsets.CIFAR10(root='./data/',
+train_dataset = dsets.CIFAR10(root='../data/',
                                train=True, 
                                transform=transform,
                                download=True)
 
-test_dataset = dsets.CIFAR10(root='./data/',
+test_dataset = dsets.CIFAR10(root='../data/',
                               train=False, 
                               transform=transforms.ToTensor())
 
@@ -130,6 +130,7 @@ for epoch in range(80):
         optimizer = torch.optim.Adam(resnet.parameters(), lr=lr) 
 
 # Test
+resnet.eval()
 correct = 0
 total = 0
 for images, labels in test_loader:
@@ -140,3 +141,6 @@ for images, labels in test_loader:
     correct += (predicted == labels).sum()
 
 print('Accuracy of the model on the test images: %d %%' % (100 * correct / total))
+
+# Save the Model
+torch.save(resnet, 'resnet.pkl')
