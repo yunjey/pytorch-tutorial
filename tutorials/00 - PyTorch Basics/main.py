@@ -27,10 +27,10 @@ b = Variable(torch.Tensor([3]), requires_grad=True)
 # Build a computational graph.
 y = w * x + b    # y = 2 * x + 3
 
-# Compute gradients
+# Compute gradients.
 y.backward()
 
-# Print out the gradients
+# Print out the gradients.
 print(x.grad)    # x.grad = 2 
 print(w.grad)    # w.grad = 1 
 print(b.grad)    # b.grad = 1 
@@ -146,7 +146,7 @@ for param in resnet.parameters():
 # Replace top layer for finetuning.
 resnet.fc = nn.Linear(resnet.fc.in_features, 100)  # 100 is for example.
 
-# For test
+# For test.
 images = Variable(torch.randn(10, 3, 256, 256))
 outputs = resnet(images)
 print (outputs.size())   # (10, 100)
