@@ -8,42 +8,104 @@ import torchvision.datasets as dsets
 from torch.autograd import Variable
 
 
-# Create a torch tensor with random normal.
-x = torch.randn(5, 3)
-print (x)
+#========================== Table of Contents ==========================#
+# 1. Basic autograd example 1               (Line 21 to 36)
+# 2. Basic autograd example 2               (Line 39 to 80)
+# 3. Loading data from numpy                (Line 83 to 86)
+# 4. Implementing the input pipline         (Line 90 to 117)
+# 5. Input pipline for custom dataset       (Line 119 to 139)
+# 6. Using pretrained model                 (Line142 to 156)
+# 7. Save and load model                    (Line 159 to L161) 
 
-# Build a layer.
+
+#======================= Basic autograd example 1 =======================#
+# Create tensors.
+x = Variable(torch.Tensor([1]), requires_grad=True)
+w = Variable(torch.Tensor([2]), requires_grad=True)
+b = Variable(torch.Tensor([3]), requires_grad=True)
+
+# Build a computational graph.
+y = w * x + b   # y = 2 * x + 3
+
+# Compute gradients
+y.backward()
+
+# Print out the gradients
+print(x.grad)   # x.grad = 2 
+print(w.grad)   # w.grad = 1 
+print(b.grad)   # b.grad = 1 
+
+
+#======================== Basic autograd example 2 =======================#
+# Create tensors.
+x = Variable(torch.randn(5, 3))
+y = Variable(torch.randn(5, 2))
+print ('x: ', x)
+print ('y: ', y)
+
+# Build a linear layer.
 linear = nn.Linear(3, 2)
-print (linear.weight)
-print (linear.bias)
+print ('w: ', linear.weight)
+print ('b: ', linear.bias)
 
-# Forward propagate.
-y = linear(Variable(x))
-print (y)
+# Build Loss and Optimizer.
+criterion = nn.MSELoss()
+optimizer = torch.optim.SGD(linear.parameters(), lr=0.01)
 
-# Convert numpy array to torch tensor.
+# Forward propagation.
+pred = linear(x)
+print('pred: ', pred)
+
+# Compute loss.
+loss = criterion(pred, y)
+print('loss: ', loss.data[0])
+
+# Backpropagation.
+loss.backward()
+
+# Print out the gradients.
+print ('dL/dw: ', linear.weight.grad) 
+print ('dL/db: ', linear.bias.grad)
+
+# 1-step Optimization (gradient descent).
+optimizer.step()
+print ('Optimized..!')
+
+# You can also do optimization at the low level as shown below.
+# linear.weight.data.sub_(0.01 * linear.weight.grad.data)
+# linear.bias.data.sub_(0.01 * linear.bias.grad.data)
+
+# Print out the loss after optimization.
+loss = criterion(pred, y)
+print('loss after 1 step optimization: ', loss.data[0])
+
+
+#======================== Loading data from numpy ========================#
 a = np.array([[1,2], [3,4]])
 b = torch.from_numpy(a)
 print (b)
 
-# Download and load cifar10 dataset .
-train_dataset = dsets.CIFAR10(root='./data/',
+
+
+#===================== Implementing the input pipline =====================#
+# Download and construct dataset.
+train_dataset = dsets.CIFAR10(root='../data/',
                                train=True, 
                                transform=transforms.ToTensor(),
                                download=True)
 
-# Select one data pair.
+# Select one data pair (read data from disk).
 image, label = train_dataset[0]
 print (image.size())
 print (label)
 
-# Input pipeline (this provides queue and thread in a very simple way).
+# Data Loader (this provides queue and thread in a very simple way).
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                            batch_size=100, 
                                            shuffle=True,
                                            num_workers=2)
 
-# When iteration starts, queue and thread start to load dataset.
+# When iteration starts, queue and thread start to load dataset from files.
 data_iter = iter(train_loader)
 
 # Mini-batch images and labels.
@@ -54,36 +116,46 @@ for images, labels in train_loader:
     # Your training code will be written here
     pass
 
-# Build custom dataset.
+#===================== Input pipline for custom dataset =====================#
+# You should build custom dataset as below.
 class CustomDataset(data.Dataset):
     def __init__(self):
+        # TODO
+        # 1. Initialize file path or list of file names. 
         pass
     def __getitem__(self, index):
         # TODO
-        # 1. Read one data from file (e.g. using np.fromfile, PIL.Image.open).
+        # 1. Read one data from file (e.g. using numpy.fromfile, PIL.Image.open).
         # 2. Return a data pair (e.g. image and label).
         pass
     def __len__(self):
         # You should change 0 to the total size of your dataset.
         return 0 
 
+# Then, you can just use prebuilt torch's data loader. 
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                            batch_size=100, 
                                            shuffle=True,
                                            num_workers=2)
 
 
-# Download and load pretrained model.
+#========================== Using pretrained model ==========================#
+# Download and load pretrained resnet.
 resnet = torchvision.models.resnet18(pretrained=True)
 
-# Detach top layer for finetuning.
-sub_model = nn.Sequential(*list(resnet.children())[:-1])
+# If you want to finetune only top layer of the model.
+for param in resnet.parameters():
+    param.requires_grad = False
+    
+# Replace top layer for finetuning.
+resnet.fc = nn.Linear(resnet.fc.in_features, 100)  # 100 is for example.
 
 # For test
 images = Variable(torch.randn(10, 3, 256, 256))
-print (resnet(images).size())
-print (sub_model(images).size())
+outputs = resnet(images)
+print (outputs.size())   # (10, 100)
 
-# Save and load the model.
-torch.save(sub_model, 'model.pkl')
+
+#============================ Save and load model ============================#
+torch.save(resnet, 'model.pkl')
 model = torch.load('model.pkl')
