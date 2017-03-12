@@ -10,12 +10,12 @@ from torch.autograd import Variable
 
 #========================== Table of Contents ==========================#
 # 1. Basic autograd example 1               (Line 21 to 36)
-# 2. Basic autograd example 2               (Line 39 to 80)
-# 3. Loading data from numpy                (Line 83 to 86)
-# 4. Implementing the input pipline         (Line 90 to 117)
-# 5. Input pipline for custom dataset       (Line 119 to 139)
-# 6. Using pretrained model                 (Line142 to 156)
-# 7. Save and load model                    (Line 159 to L161) 
+# 2. Basic autograd example 2               (Line 39 to 76)
+# 3. Loading data from numpy                (Line 79 to 82)
+# 4. Implementing the input pipline         (Line 86 to 113)
+# 5. Input pipline for custom dataset       (Line 115 to 135)
+# 6. Using pretrained model                 (Line 138 to 152)
+# 7. Save and load model                    (Line 155 to L157) 
 
 
 #======================= Basic autograd example 1 =======================#
@@ -25,23 +25,21 @@ w = Variable(torch.Tensor([2]), requires_grad=True)
 b = Variable(torch.Tensor([3]), requires_grad=True)
 
 # Build a computational graph.
-y = w * x + b   # y = 2 * x + 3
+y = w * x + b    # y = 2 * x + 3
 
 # Compute gradients
 y.backward()
 
 # Print out the gradients
-print(x.grad)   # x.grad = 2 
-print(w.grad)   # w.grad = 1 
-print(b.grad)   # b.grad = 1 
+print(x.grad)    # x.grad = 2 
+print(w.grad)    # w.grad = 1 
+print(b.grad)    # b.grad = 1 
 
 
 #======================== Basic autograd example 2 =======================#
 # Create tensors.
 x = Variable(torch.randn(5, 3))
 y = Variable(torch.randn(5, 2))
-print ('x: ', x)
-print ('y: ', y)
 
 # Build a linear layer.
 linear = nn.Linear(3, 2)
@@ -54,7 +52,6 @@ optimizer = torch.optim.SGD(linear.parameters(), lr=0.01)
 
 # Forward propagation.
 pred = linear(x)
-print('pred: ', pred)
 
 # Compute loss.
 loss = criterion(pred, y)
@@ -69,7 +66,6 @@ print ('dL/db: ', linear.bias.grad)
 
 # 1-step Optimization (gradient descent).
 optimizer.step()
-print ('Optimized..!')
 
 # You can also do optimization at the low level as shown below.
 # linear.weight.data.sub_(0.01 * linear.weight.grad.data)
