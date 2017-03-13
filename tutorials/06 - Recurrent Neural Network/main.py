@@ -64,7 +64,7 @@ optimizer = torch.optim.Adam(rnn.parameters(), lr=learning_rate)
 for epoch in range(num_epochs):
     for i, (images, labels) in enumerate(train_loader):
         images = Variable(images.view(-1, sequence_length, input_size))
-        labels = Variable(labels).cuda()
+        labels = Variable(labels)
         
         # Forward + Backward + Optimize
         optimizer.zero_grad()
