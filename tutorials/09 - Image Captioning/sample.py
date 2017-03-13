@@ -1,12 +1,19 @@
 import os
 import numpy as np
 import torch
+import torchvision.transforms as T
 import pickle
 import matplotlib.pyplot as plt
 from PIL import Image
 from model import EncoderCNN, DecoderRNN
 from vocab import Vocabulary
 from torch.autograd import Variable
+
+# Image processing 
+transform = T.Compose([
+    T.CenterCrop(224),
+    T.ToTensor(),
+    T.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))])
 
 # Hyper Parameters
 embed_size = 128
@@ -18,11 +25,10 @@ with open('./data/vocab.pkl', 'rb') as f:
     vocab = pickle.load(f)
     
 # Load an image array
-images = os.listdir('./data/val2014resized/')
-image_path = './data/val2014resized/' + images[12]  
-with open(image_path, 'r+b') as f:
-    img = np.asarray(Image.open(f))
-image = torch.from_numpy(img.transpose(2, 0, 1)).float().unsqueeze(0) / 255 - 0.5
+images = os.listdir('./data/train2014resized/')
+image_path = './data/train2014resized/' + images[12] 
+img = Image.open(image_path)
+image = transform(img).unsqueeze(0) 
 
 # Load the trained models
 encoder = torch.load('./encoder.pkl')

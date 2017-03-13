@@ -1,6 +1,6 @@
 from data import get_loader 
 from vocab import Vocabulary
-from models import EncoderCNN, DecoderRNN 
+from model import EncoderCNN, DecoderRNN 
 from torch.autograd import Variable 
 from torch.nn.utils.rnn import pack_padded_sequence
 import torch
@@ -10,10 +10,11 @@ import torchvision.transforms as T
 import pickle 
 
 # Hyper Parameters
-num_epochs = 5
-batch_size = 100
-embed_size = 128
+num_epochs = 1
+batch_size = 32
+embed_size = 256
 hidden_size = 512
+crop_size = 224
 num_layers = 1
 learning_rate = 0.001
 train_image_path = './data/train2014resized/'
@@ -21,6 +22,7 @@ train_json_path = './data/annotations/captions_train2014.json'
 
 # Image Preprocessing
 transform = T.Compose([
+    T.RandomCrop(crop_size),
     T.RandomHorizontalFlip(), 
     T.ToTensor(), 
     T.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))])
@@ -42,7 +44,8 @@ decoder.cuda()
         
 # Loss and Optimizer
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(decoder.parameters(), lr=learning_rate)
+params = list(decoder.parameters()) + list(encoder.resnet.fc.parameters())
+optimizer = torch.optim.Adam(params, lr=learning_rate)
 
 # Train the Decoder
 for epoch in range(num_epochs):
@@ -63,7 +66,7 @@ for epoch in range(num_epochs):
         if i % 100 == 0:
             print('Epoch [%d/%d], Step [%d/%d], Loss: %.4f, Perplexity: %5.4f'
                   %(epoch, num_epochs, i, total_step, loss.data[0], np.exp(loss.data[0])))    
-            
+
 # Save the Model
 torch.save(decoder, 'decoder.pkl')
 torch.save(encoder, 'encoder.pkl')
