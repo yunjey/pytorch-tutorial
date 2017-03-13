@@ -72,6 +72,7 @@ optimizer.step()
 # linear.bias.data.sub_(0.01 * linear.bias.grad.data)
 
 # Print out the loss after optimization.
+pred = linear(x)
 loss = criterion(pred, y)
 print('loss after 1 step optimization: ', loss.data[0])
 
