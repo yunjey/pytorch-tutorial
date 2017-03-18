@@ -92,4 +92,4 @@ for images, labels in test_loader:
 print('Test Accuracy of the model on the 10000 test images: %d %%' % (100 * correct / total)) 
 
 # Save the Model
-torch.save(rnn, 'rnn.pkl')
+torch.save(rnn.state_dict(), 'rnn.pkl')

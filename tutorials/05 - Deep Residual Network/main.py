@@ -103,7 +103,7 @@ class ResNet(nn.Module):
         return out
     
 resnet = ResNet(ResidualBlock, [2, 2, 2, 2])
-resnet
+
 
 # Loss and Optimizer
 criterion = nn.CrossEntropyLoss()
@@ -127,7 +127,7 @@ for epoch in range(80):
             print ("Epoch [%d/%d], Iter [%d/%d] Loss: %.4f" %(epoch+1, 80, i+1, 500, loss.data[0]))
 
     # Decaying Learning Rate
-    if (epoch+1) % 30 == 0:
+    if (epoch+1) % 20 == 0:
         lr /= 3
         optimizer = torch.optim.Adam(resnet.parameters(), lr=lr) 
 
@@ -144,4 +144,4 @@ for images, labels in test_loader:
 print('Accuracy of the model on the test images: %d %%' % (100 * correct / total))
 
 # Save the Model
-torch.save(resnet, 'resnet.pkl')
+torch.save(resnet.state_dict(), 'resnet.pkl')

@@ -82,3 +82,6 @@ for images, labels in test_loader:
     correct += (predicted == labels).sum()
 
 print('Accuracy of the network on the 10000 test images: %d %%' % (100 * correct / total))
+
+# Save the Model
+torch.save(net.state_dict(), 'model.pkl')

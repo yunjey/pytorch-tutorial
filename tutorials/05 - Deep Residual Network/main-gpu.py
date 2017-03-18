@@ -144,4 +144,4 @@ for images, labels in test_loader:
 print('Accuracy of the model on the test images: %d %%' % (100 * correct / total))
 
 # Save the Model
-torch.save(resnet, 'resnet.pkl')
+torch.save(resnet.state_dict(), 'resnet.pkl')

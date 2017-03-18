@@ -61,4 +61,4 @@ plt.legend()
 plt.show()
 
 # Save the Model
-torch.save(model, 'model.pkl')
+torch.save(model.state_dict(), 'model.pkl')
