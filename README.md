@@ -17,7 +17,7 @@ This repository provides tutorial code for deep learning researchers to learn [P
 * [Deep Residual Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/05%20-%20Deep%20Residual%20Network/main.py#L67-L103)
 * [Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/06%20-%20Recurrent%20Neural%20Network/main.py#L38-L56)
 * [Bidirectional Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/07%20-%20Bidirectional%20Recurrent%20Neural%20Network/main.py#L38-L57)
-* [Language Model (RNNLM)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/08%20-%20Language%20Model/main.py#L28-L54)
+* [Language Model (RNNLM)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/08%20-%20Language%20Model/main.py#L28-L53)
 * [Image Captioning (CNN-RNN)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/09%20-%20Image%20Captioning/model.py#L29-L64)
 * [Generative Adversarial Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/10%20-%20Generative%20Adversarial%20Network/main.py#L32-L50)
 * [Deep Q-Network and Q-learning (WIP)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/11%20-%20Deep%20Q%20Network/dqn13.py)
