@@ -1,6 +1,7 @@
-# Create a vocabulary wrapper
 import nltk
 import pickle
+import os
+from configuration import Config
 from collections import Counter
 from pycocotools.coco import COCO
 
@@ -27,7 +28,7 @@ class Vocabulary(object):
         return len(self.word2idx)
 
 def build_vocab(json, threshold):
-    """Build a simple vocabulary wrapper."""
+    """Builds a simple vocabulary wrapper."""
     coco = COCO(json)
     counter = Counter()
     ids = coco.anns.keys()
@@ -37,29 +38,31 @@ def build_vocab(json, threshold):
         counter.update(tokens)
         
         if i % 1000 == 0:
-            print("[%d/%d] tokenized the captions." %(i, len(ids)))
-        
-    # Discard if the occurrence of the word is less than min_word_cnt.
+            print("[%d/%d] Tokenized the captions." %(i, len(ids)))
+    
+    # If the word frequency is less than 'threshold', then the word is discarded.
     words = [word for word, cnt in counter.items() if cnt >= threshold]
 
-    # Create a vocab wrapper and add some special tokens.
+    # Creates a vocab wrapper and add some special tokens.
     vocab = Vocabulary()
     vocab.add_word('<pad>') 
     vocab.add_word('<start>') 
     vocab.add_word('<end>') 
     vocab.add_word('<unk>') 
     
-    # Add words to the vocabulary.
+    # Adds the words to the vocabulary.
     for i, word in enumerate(words):
         vocab.add_word(word)
     return vocab
 
 def main():
-    vocab = build_vocab(json='./data/annotations/captions_train2014.json',
-                         threshold=4)
-    with open('./data/vocab.pkl', 'wb') as f:
+    config = Config()
+    vocab = build_vocab(json=os.path.join(config.caption_path, 'captions_train2014.json'),
+                        threshold=config.word_count_threshold)
+    vocab_path = os.path.join(config.vocab_path, 'vocab.pkl')
+    with open(vocab_path, 'wb') as f:
         pickle.dump(vocab, f, pickle.HIGHEST_PROTOCOL)
-    print("Saved vocabulary file to ", './data/vocab.pkl')
+    print("Saved the vocabulary wrapper to ", vocab_path)
     
 if __name__ == '__main__':
     main()
