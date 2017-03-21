@@ -2,11 +2,13 @@ import torch
 import torchvision.transforms as transforms
 import torch.utils.data as data
 import os
+import sys
 import pickle
 import numpy as np
 import nltk
 from PIL import Image
 from vocab import Vocabulary
+sys.path.append('../../../coco/PythonAPI')
 from pycocotools.coco import COCO
 
 
