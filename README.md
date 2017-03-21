@@ -35,8 +35,10 @@ $ python main-gpu.py           # gpu version
 
 <br/>
 
-## Installation
-* [PyTorch](http://pytorch.org/)
+## Dependencies
+* [pytorch](http://pytorch.org)
+* [pytorch-vision](http://pytorch.org/)
+
 
 
 <br/>
