@@ -29,7 +29,7 @@ $ python train.py
 ```
 
 #### 5. Generate captions
-If you want to generate captions from MSCOCO validation dataset, see [evaluate_model.ipynb](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/09%20-%20Image%20Captioning/evaluate_model.ipynb). Otherwise, if you want to generate captions from custom image file, run command as below.
+
 
 ```bash
 $ python sample.py --image=sample_image.jpg     
