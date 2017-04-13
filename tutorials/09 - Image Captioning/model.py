@@ -7,7 +7,7 @@ from torch.autograd import Variable
 
 class EncoderCNN(nn.Module):
     def __init__(self, embed_size):
-        """Loads the pretrained ResNet-152 and replace top fc layer."""
+        """Load the pretrained ResNet-152 and replace top fc layer."""
         super(EncoderCNN, self).__init__()
         self.resnet = models.resnet152(pretrained=True)
         for param in self.resnet.parameters():
@@ -17,12 +17,12 @@ class EncoderCNN(nn.Module):
         self.init_weights()
         
     def init_weights(self):
-        """Initialize weights."""
+        """Initialize the weights."""
         self.resnet.fc.weight.data.normal_(0.0, 0.02)
         self.resnet.fc.bias.data.fill_(0)
         
     def forward(self, images):
-        """Extracts the image feature vectors."""
+        """Extract the image feature vectors."""
         features = self.resnet(images)
         features = self.bn(features)
         return features
@@ -44,7 +44,7 @@ class DecoderRNN(nn.Module):
         self.linear.bias.data.fill_(0)
         
     def forward(self, features, captions, lengths):
-        """Decodes image feature vectors and generates captions."""
+        """Decode image feature vectors and generates captions."""
         embeddings = self.embed(captions)
         embeddings = torch.cat((features.unsqueeze(1), embeddings), 1)
         packed = pack_padded_sequence(embeddings, lengths, batch_first=True) 
@@ -56,11 +56,11 @@ class DecoderRNN(nn.Module):
         """Samples captions for given image features (Greedy search)."""
         sampled_ids = []
         inputs = features.unsqueeze(1)
-        for i in range(20):
-            hiddens, states = self.lstm(inputs, states)                # (batch_size, 1, hidden_size)
-            outputs = self.linear(hiddens.squeeze(1))                  # (batch_size, vocab_size)
+        for i in range(20):                                      # maximum sampling length
+            hiddens, states = self.lstm(inputs, states)          # (batch_size, 1, hidden_size)
+            outputs = self.linear(hiddens.squeeze(1))            # (batch_size, vocab_size)
             predicted = outputs.max(1)[1]
             sampled_ids.append(predicted)
             inputs = self.embed(predicted)
-        sampled_ids = torch.cat(sampled_ids, 1)                        # (batch_size, 20)
+        sampled_ids = torch.cat(sampled_ids, 1)                  # (batch_size, 20)
         return sampled_ids.squeeze()
