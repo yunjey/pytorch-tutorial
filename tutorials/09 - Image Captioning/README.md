@@ -16,7 +16,7 @@ $ cd pytorch-tutorial/tutorials/09\ -\ Image\ Captioning
 ```bash
 $ pip install -r requirements
 $ chmod +x download.sh
-$ ./donwload.sh
+$ ./download.sh
 ```
 
 #### 3. Preprocessing
