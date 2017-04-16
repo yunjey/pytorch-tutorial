@@ -8,7 +8,7 @@ $ cd coco/PythonAPI/
 $ make
 $ cd ../../
 $ git clone https://github.com/yunjey/pytorch-tutorial.git
-$ cd pytorch-tutorial/tutorials/09 - Image Captioning
+$ cd pytorch-tutorial/tutorials/09\ -\ Image\ Captioning
 ```
 
 #### 2. Download the dataset
