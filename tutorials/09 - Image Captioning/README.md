@@ -6,6 +6,8 @@
 $ git clone https://github.com/pdollar/coco.git
 $ cd coco/PythonAPI/
 $ make
+$ python setup.py build
+$ python setup.py install
 $ cd ../../
 $ git clone https://github.com/yunjey/pytorch-tutorial.git
 $ cd pytorch-tutorial/tutorials/09\ -\ Image\ Captioning
