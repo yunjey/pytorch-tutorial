@@ -61,7 +61,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 # Truncated Backpropagation 
 def detach(states):
-    return [Variable(state.data) for state in states] 
+    return [state.detach() for state in states] 
 
 # Training
 for epoch in range(num_epochs):
