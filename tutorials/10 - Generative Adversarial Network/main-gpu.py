@@ -77,7 +77,7 @@ for epoch in range(200):
         
         noise = Variable(torch.randn(images.size(0), 128)).cuda()
         fake_images = generator(noise)
-        outputs = discriminator(fake_images) 
+        outputs = discriminator(fake_images.detach()) 
         fake_loss = criterion(outputs, fake_labels)
         fake_score = outputs
         
