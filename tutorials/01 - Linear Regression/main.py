@@ -54,7 +54,7 @@ for epoch in range(num_epochs):
                %(epoch+1, num_epochs, loss.data[0]))
         
 # Plot the graph
-predicted = model(Variable(torch.from_numpy(x_train))).data.numpy()
+predicted = model(Variable(torch.from_numpy(x_train), volatile=True)).data.numpy()
 plt.plot(x_train, y_train, 'ro', label='Original data')
 plt.plot(x_train, predicted, label='Fitted line')
 plt.legend()
