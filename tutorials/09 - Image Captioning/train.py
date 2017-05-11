@@ -116,3 +116,4 @@ if __name__ == '__main__':
     parser.add_argument('--learning_rate', type=float, default=0.001)
     args = parser.parse_args()
     print(args)
+    main(args)
