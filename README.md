@@ -24,7 +24,12 @@ This repository provides tutorial code for deep learning researchers to learn [P
 * [Language Model (RNNLM)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/08%20-%20Language%20Model/main.py#L28-L53)
 * [Image Captioning (CNN-RNN)](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/09%20-%20Image%20Captioning)
 * [Generative Adversarial Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/10%20-%20Generative%20Adversarial%20Network/main.py#L25-L51)
-* [Deep Convolutional Generative Adversarial Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/11%20-%20Deep%20Convolutional%20Generative%20Adversarial%20Network/main.py#L32-L50)
+* [Deep Convolutional GAN](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/11%20-%20Deep%20Convolutional%20Generative%20Adversarial%20Network/main.py#L32-L50)
+
+* Variational Auto-Encoder (will be updated soon)
+
+* Neural Style Transfer (will be updated soon)
+
 * [Deep Q-Network and Q-learning (WIP)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/12%20-%20Deep%20Q%20Network/dqn13.py)
 
 
