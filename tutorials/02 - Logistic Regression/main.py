@@ -13,12 +13,12 @@ batch_size = 100
 learning_rate = 0.001
 
 # MNIST Dataset (Images and Labels)
-train_dataset = dsets.MNIST(root='../data', 
+train_dataset = dsets.MNIST(root='./data', 
                             train=True, 
                             transform=transforms.ToTensor(),
                             download=True)
 
-test_dataset = dsets.MNIST(root='../data', 
+test_dataset = dsets.MNIST(root='./data', 
                            train=False, 
                            transform=transforms.ToTensor())
 
