@@ -12,8 +12,11 @@ transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))])
 
+def denorm(x):
+    return (x + 1) / 2
+
 # CIFAR-10 Dataset
-train_dataset = dsets.CIFAR10(root='../data/',
+train_dataset = dsets.CIFAR10(root='./data/',
                                train=True, 
                                transform=transform,
                                download=True)
@@ -126,7 +129,7 @@ for epoch in range(50):
                     real_score.data.mean(), fake_score.data.mean()))
             
             # Save the sampled images
-            torchvision.utils.save_image(fake_images.data, 
+            torchvision.utils.save_image(denorm(fake_images.data), 
                 './data/fake_samples_%d_%d.png' %(epoch+1, i+1))
 
 # Save the Models

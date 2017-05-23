@@ -11,8 +11,11 @@ transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))])
 
+def denorm(x):
+    return (x + 1) / 2
+
 # MNIST Dataset
-train_dataset = dsets.MNIST(root='../data/',
+train_dataset = dsets.MNIST(root='./data/',
                             train=True, 
                             transform=transform,
                             download=True)
@@ -102,7 +105,7 @@ for epoch in range(200):
             
     # Save the sampled images
     fake_images = fake_images.view(fake_images.size(0), 1, 28, 28)
-    torchvision.utils.save_image(fake_images.data, 
+    torchvision.utils.save_image(denorm(fake_images.data), 
         './data/fake_samples_%d.png' %(epoch+1))
 
 # Save the Models 
