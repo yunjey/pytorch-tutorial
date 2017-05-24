@@ -16,7 +16,7 @@ $ cd pytorch-tutorial/tutorials/09\ -\ Image\ Captioning
 #### 2. Download the dataset
 
 ```bash
-$ pip install -r requirements
+$ pip install -r requirements.txt
 $ chmod +x download.sh
 $ ./download.sh
 ```
