@@ -135,7 +135,7 @@ for epoch in range(80):
 correct = 0
 total = 0
 for images, labels in test_loader:
-    images = Variable(images)
+    images = Variable(images, volatile=True)
     outputs = resnet(images)
     _, predicted = torch.max(outputs.data, 1)
     total += labels.size(0)

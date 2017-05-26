@@ -75,7 +75,7 @@ for epoch in range(num_epochs):
 correct = 0
 total = 0
 for images, labels in test_loader:
-    images = Variable(images.view(-1, 28*28)).cuda()
+    images = Variable(images.view(-1, 28*28), volatile=True).cuda()
     outputs = net(images)
     _, predicted = torch.max(outputs.data, 1)
     total += labels.size(0)
