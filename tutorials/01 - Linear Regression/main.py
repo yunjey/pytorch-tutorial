@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from torch.autograd import Variable
 
 
-# Hyper Parameters
+# Hyper Parameters these can depend on how much the model runs, cant live forever.
 input_size = 1
 output_size = 1
 num_epochs = 60
