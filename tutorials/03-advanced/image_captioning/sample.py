@@ -11,13 +11,26 @@ from model import EncoderCNN, DecoderRNN
 from PIL import Image
 
 
+def to_var(x, volatile=False):
+    if torch.cuda.is_available():
+        x = x.cuda()
+    return Variable(x, volatile=volatile)
+
+def load_image(image_path, transform=None):
+    image = Image.open(image_path)
+    image = image.resize([224, 224], Image.LANCZOS)
+    
+    if transform is not None:
+        image = transform(image).unsqueeze(0)
+    
+    return image
+    
 def main(args):
     # Image preprocessing
-    transform = transforms.Compose([ 
-        transforms.Scale(args.crop_size),  
-        transforms.CenterCrop(args.crop_size),
+    transform = transforms.Compose([
         transforms.ToTensor(), 
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        transforms.Normalize((0.485, 0.456, 0.406), 
+                             (0.229, 0.224, 0.225))])
     
     # Load vocabulary wrapper
     with open(args.vocab_path, 'rb') as f:
@@ -35,23 +48,17 @@ def main(args):
     decoder.load_state_dict(torch.load(args.decoder_path))
 
     # Prepare Image       
-    image = Image.open(args.image)
-    image_tensor = Variable(transform(image).unsqueeze(0))
-    
-    # Set initial states
-    state = (Variable(torch.zeros(args.num_layers, 1, args.hidden_size)),
-             Variable(torch.zeros(args.num_layers, 1, args.hidden_size)))
+    image = load_image(args.image, transform)
+    image_tensor = to_var(image, volatile=True)
     
     # If use gpu
     if torch.cuda.is_available():
         encoder.cuda()
         decoder.cuda()
-        state = [s.cuda() for s in state]
-        image_tensor = image_tensor.cuda()
     
     # Generate caption from image
     feature = encoder(image_tensor)
-    sampled_ids = decoder.sample(feature, state)
+    sampled_ids = decoder.sample(feature)
     sampled_ids = sampled_ids.cpu().data.numpy()
     
     # Decode word_ids to words
@@ -77,8 +84,6 @@ if __name__ == '__main__':
                         help='path for trained decoder')
     parser.add_argument('--vocab_path', type=str, default='./data/vocab.pkl',
                         help='path for vocabulary wrapper')
-    parser.add_argument('--crop_size', type=int, default=224,
-                        help='size for center cropping images')
     
     # Model parameters (should be same as paramters in train.py)
     parser.add_argument('--embed_size', type=int , default=256,

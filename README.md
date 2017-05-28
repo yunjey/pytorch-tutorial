@@ -2,10 +2,6 @@
 
 --------------------------------------------------------------------------------
 
-<p align="center"><img src="https://img.shields.io/github/stars/yunjey/pytorch-tutorial.svg"/> 
-<img src="https://img.shields.io/github/forks/yunjey/pytorch-tutorial.svg" />
-<img src="https://img.shields.io/badge/license-MIT-blue.svg"/> </p>
-
 This repository provides tutorial code for deep learning researchers to learn [PyTorch](https://github.com/pytorch/pytorch). In the tutorial, most of the models were implemented with less than 30 lines of code. Before starting this tutorial, it is recommended to finish [Official Pytorch Tutorial](http://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html).
 
 
@@ -13,21 +9,29 @@ This repository provides tutorial code for deep learning researchers to learn [P
 
 ## Table of Contents
 
-* [PyTorch Basics](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/00%20-%20PyTorch%20Basics/main.py)
-* [Linear Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/01%20-%20Linear%20Regression/main.py#L24-L31)
-* [Logistic Regression](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/02%20-%20Logistic%20Regression/main.py#L35-L42)
-* [Feedforward Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/03%20-%20Feedforward%20Neural%20Network/main.py#L36-L47)
-* [Convolutional Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/04%20-%20Convolutional%20Neural%20Network/main.py#L33-L53)
-* [Deep Residual Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/05%20-%20Deep%20Residual%20Network/main.py#L67-L103)
-* [Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/06%20-%20Recurrent%20Neural%20Network/main.py#L38-L56)
-* [Bidirectional Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/07%20-%20Bidirectional%20Recurrent%20Neural%20Network/main.py#L38-L57)
-* [Language Model (RNNLM)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/08%20-%20Language%20Model/main.py#L28-L53)
-* [Image Captioning (CNN-RNN)](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/09%20-%20Image%20Captioning)
-* [Generative Adversarial Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/10%20-%20Generative%20Adversarial%20Network/main.py#L25-L51)
-* [Deep Convolutional GAN](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/11%20-%20Deep%20Convolutional%20Generative%20Adversarial%20Network/main.py#L32-L50)
-* Variational Auto-Encoder (will be updated soon)
-* Neural Style Transfer (will be updated soon)
-* [Deep Q-Network and Q-learning (WIP)](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/12%20-%20Deep%20Q%20Network/dqn13.py)
+#### 1. Basics
+* [PyTorch Basics](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/01-basics/pytorch_basics/main.py)
+* [Linear Regression](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/01-basics/linear_regression/main.py#L24-L31)
+* [Logistic Regression](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/01-basics/logistic_regression/main.py#L35-L42)
+* [Feedforward Neural Network](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/01-basics/feedforward_neural_network/main.py#L36-L47)
+
+#### 2. Intermediate
+* [Convolutional Neural Network](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/02-intermediate/convolutional_neural_network/main.py#L33-L53)
+* [Deep Residual Network](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/02-intermediate/deep_residual_network/main.py#L67-L103)
+* [Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/02-intermediate/recurrent_neural_network/main.py#L38-L56)
+* [Bidirectional Recurrent Neural Network](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/02-intermediate/bidirectional_recurrent_neural_network/main.py#L38-L57)
+* [Language Model (RNN-LM)](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/02-intermediate/language_model/main.py#L28-L53)
+* [Generative Adversarial Network](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/02-intermediate/generative_adversarial_network/main.py#L34-L50)
+
+#### 3. Advanced
+* [Image Captioning (CNN-RNN)](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/03-advanced/image_captioning)
+* [Deep Convolutional GAN (DCGAN)](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/03-advanced/deep_convolutional_gan)
+* [Variational Auto-Encoder](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/03-advanced/variational_auto_encoder)
+* [Neural Style Transfer](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/03-advanced/neural_style_transfer)
+
+#### 4. Utilities
+* [TensorBoard in PyTorch](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/04-utils/tensorboard)
+
 
 
 <br/>
@@ -43,10 +47,13 @@ $ python main-gpu.py           # gpu version
 <br/>
 
 ## Dependencies
-* [pytorch](http://pytorch.org)
-* [pytorch-vision](http://pytorch.org/)
+* [Python 2.7 or 3.5](https://www.continuum.io/downloads)
+* [PyTorch 0.1.12](http://pytorch.org/)
 
 
 
 <br/>
 
+
+## Author
+Yunjey Choi/ [@yunjey](https://github.com/yunjey)

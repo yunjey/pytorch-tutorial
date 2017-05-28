@@ -9,22 +9,24 @@ class EncoderCNN(nn.Module):
     def __init__(self, embed_size):
         """Load the pretrained ResNet-152 and replace top fc layer."""
         super(EncoderCNN, self).__init__()
-        self.resnet = models.resnet152(pretrained=True)
-        for param in self.resnet.parameters():
-            param.requires_grad = False
-        self.resnet.fc = nn.Linear(self.resnet.fc.in_features, embed_size)
+        resnet = models.resnet152(pretrained=True)
+        modules = list(resnet.children())[:-1]      # delete the last fc layer.
+        self.resnet = nn.Sequential(*modules)
+        self.linear = nn.Linear(resnet.fc.in_features, embed_size)
         self.bn = nn.BatchNorm1d(embed_size, momentum=0.01)
         self.init_weights()
         
     def init_weights(self):
         """Initialize the weights."""
-        self.resnet.fc.weight.data.normal_(0.0, 0.02)
-        self.resnet.fc.bias.data.fill_(0)
+        self.linear.weight.data.normal_(0.0, 0.02)
+        self.linear.bias.data.fill_(0)
         
     def forward(self, images):
         """Extract the image feature vectors."""
         features = self.resnet(images)
-        features = self.bn(features)
+        features = Variable(features.data)
+        features = features.view(features.size(0), -1)
+        features = self.bn(self.linear(features))
         return features
     
     
@@ -52,12 +54,12 @@ class DecoderRNN(nn.Module):
         outputs = self.linear(hiddens[0])
         return outputs
     
-    def sample(self, features, states):
+    def sample(self, features, states=None):
         """Samples captions for given image features (Greedy search)."""
         sampled_ids = []
         inputs = features.unsqueeze(1)
         for i in range(20):                                      # maximum sampling length
-            hiddens, states = self.lstm(inputs, states)          # (batch_size, 1, hidden_size)
+            hiddens, states = self.lstm(inputs, states)          # (batch_size, 1, hidden_size), 
             outputs = self.linear(hiddens.squeeze(1))            # (batch_size, vocab_size)
             predicted = outputs.max(1)[1]
             sampled_ids.append(predicted)

@@ -11,18 +11,24 @@ from torch.autograd import Variable
 from torch.nn.utils.rnn import pack_padded_sequence
 from torchvision import transforms
 
-
+def to_var(x, volatile=False):
+    if torch.cuda.is_available():
+        x = x.cuda()
+    return Variable(x, volatile=volatile)
+    
 def main(args):
     # Create model directory
     if not os.path.exists(args.model_path):
         os.makedirs(args.model_path)
     
     # Image preprocessing
+    # For normalization, see https://github.com/pytorch/vision#models
     transform = transforms.Compose([ 
         transforms.RandomCrop(args.crop_size),
         transforms.RandomHorizontalFlip(), 
         transforms.ToTensor(), 
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        transforms.Normalize((0.485, 0.456, 0.406), 
+                             (0.229, 0.224, 0.225))])
     
     # Load vocabulary wrapper.
     with open(args.vocab_path, 'rb') as f:
@@ -44,7 +50,7 @@ def main(args):
 
     # Loss and Optimizer
     criterion = nn.CrossEntropyLoss()
-    params = list(decoder.parameters()) + list(encoder.resnet.fc.parameters())
+    params = list(decoder.parameters()) + list(encoder.linear.parameters()) + list(encoder.bn.parameters())
     optimizer = torch.optim.Adam(params, lr=args.learning_rate)
     
     # Train the Models
@@ -53,11 +59,8 @@ def main(args):
         for i, (images, captions, lengths) in enumerate(data_loader):
             
             # Set mini-batch dataset
-            images = Variable(images)
-            captions = Variable(captions)
-            if torch.cuda.is_available():
-                images = images.cuda()
-                captions = captions.cuda()
+            images = to_var(images, volatile=True)
+            captions = to_var(captions)
             targets = pack_padded_sequence(captions, lengths, batch_first=True)[0]
             
             # Forward, Backward and Optimize
