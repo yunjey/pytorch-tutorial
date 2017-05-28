@@ -52,3 +52,8 @@ $ python train.py
 ```bash
 $ python sample.py --image='png/example.png'
 ```
+
+<br>
+
+## Pretrained model
+If you do not want to train the model from scratch, you can use a pretrained model. I have provided the pretrained model as a zip file. You can download the file [here](https://www.dropbox.com/s/bmo30z81a4v7m0r/pretrained_model.zip?dl=0) and extract it to `./models/` directory using `unzip pretrained_model.zip`.
