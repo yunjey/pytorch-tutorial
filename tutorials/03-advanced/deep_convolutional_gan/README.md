@@ -8,7 +8,7 @@ In the [Deep Convolutional GAN(DCGAN)](https://arxiv.org/abs/1511.06434), the au
 
 ## Usage 
 
-#### 1. Install dependencies
+#### 1. Install the dependencies
 ```bash
 $ pip install -r requirements.txt
 ```

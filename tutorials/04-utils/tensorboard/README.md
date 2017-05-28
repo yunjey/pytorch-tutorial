@@ -8,7 +8,7 @@ In this tutorial, we implement the MNIST classifier using a simple neural networ
 
 ## Usage 
 
-#### 1. Install dependencies
+#### 1. Install the dependencies
 ```bash
 $ pip install -r requirements.txt
 ```
