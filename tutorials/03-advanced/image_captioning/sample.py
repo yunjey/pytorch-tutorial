@@ -47,7 +47,7 @@ def main(args):
     encoder.load_state_dict(torch.load(args.encoder_path))
     decoder.load_state_dict(torch.load(args.decoder_path))
 
-    # Prepare Image       
+    # Prepare Image
     image = load_image(args.image, transform)
     image_tensor = to_var(image, volatile=True)
     
@@ -72,6 +72,7 @@ def main(args):
     
     # Print out image and generated caption.
     print (sentence)
+    image = Image.open(args.image)
     plt.imshow(np.asarray(image))
     
 if __name__ == '__main__':
