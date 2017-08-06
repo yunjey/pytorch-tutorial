@@ -65,7 +65,7 @@ data_iter = iter(data_loader)
 # fixed inputs for debugging
 fixed_z = to_var(torch.randn(100, 20))
 fixed_x, _ = next(data_iter)
-torchvision.utils.save_image(fixed_x.data.cpu(), './data/real_images.png')
+torchvision.utils.save_image(fixed_x.cpu(), './data/real_images.png')
 fixed_x = to_var(fixed_x.view(fixed_x.size(0), -1))
 
 for epoch in range(50):
