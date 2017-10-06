@@ -2,4 +2,4 @@
 *.zip
 data/
 .ipynb_checkpoints
-
+tutorials/01-basics/feedforward_neural_network/data/

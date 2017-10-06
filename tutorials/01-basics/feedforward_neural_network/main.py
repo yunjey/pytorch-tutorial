@@ -47,7 +47,7 @@ class Net(nn.Module):
         return out
     
 net = Net(input_size, hidden_size, num_classes)
-
+print net
     
 # Loss and Optimizer
 criterion = nn.CrossEntropyLoss()  
