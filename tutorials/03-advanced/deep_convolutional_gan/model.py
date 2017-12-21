@@ -12,7 +12,7 @@ def deconv(c_in, c_out, k_size, stride=2, pad=1, bn=True):
 
 
 class Generator(nn.Module):
-    """Generator containing 7 deconvolutional layers."""
+    """Generator containing 4 deconvolutional layers."""
     def __init__(self, z_dim=256, image_size=128, conv_dim=64):
         super(Generator, self).__init__()
         self.fc = deconv(z_dim, conv_dim*8, int(image_size/16), 1, 0, bn=False)
