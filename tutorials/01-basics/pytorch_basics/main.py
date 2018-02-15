@@ -150,7 +150,7 @@ for param in resnet.parameters():
 resnet.fc = nn.Linear(resnet.fc.in_features, 100)  # 100 is for example.
 
 # For test.
-images = Variable(torch.randn(10, 3, 256, 256))
+images = Variable(torch.randn(10, 3, 224, 224))
 outputs = resnet(images)
 print (outputs.size())   # (10, 100)
 
