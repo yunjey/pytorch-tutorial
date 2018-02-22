@@ -19,8 +19,6 @@ class Dictionary(object):
 class Corpus(object):
     def __init__(self, path='./data'):
         self.dictionary = Dictionary()
-        self.train = os.path.join(path, 'train.txt')
-        self.test = os.path.join(path, 'test.txt')
 
     def get_data(self, path, batch_size=20):
         # Add words to the dictionary
