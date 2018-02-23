@@ -47,8 +47,8 @@ $ python main-gpu.py           # gpu version
 <br/>
 
 ## Dependencies
-* [Python 2.7 or 3.5](https://www.continuum.io/downloads)
-* [PyTorch 0.1.12](http://pytorch.org/)
+* [Python 2.7 or 3.5+](https://www.continuum.io/downloads)
+* [PyTorch 0.3.0](http://pytorch.org/)
 
 
 
