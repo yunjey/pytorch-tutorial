@@ -1,14 +1,14 @@
-# Implementation of https://arxiv.org/pdf/1512.03385.pdf/
+# Implementation of https://arxiv.org/pdf/1512.03385.pdf
 # See section 4.2 for model architecture on CIFAR-10.
 # Some part of the code was referenced below.
 # https://github.com/pytorch/vision/blob/master/torchvision/models/resnet.py
-import torch 
+import torch
 import torch.nn as nn
 import torchvision.datasets as dsets
 import torchvision.transforms as transforms
 from torch.autograd import Variable
 
-# Image Preprocessing 
+# Image Preprocessing
 transform = transforms.Compose([
     transforms.Scale(40),
     transforms.RandomHorizontalFlip(),
@@ -17,26 +17,26 @@ transform = transforms.Compose([
 
 # CIFAR-10 Dataset
 train_dataset = dsets.CIFAR10(root='./data/',
-                               train=True, 
+                               train=True,
                                transform=transform,
                                download=True)
 
 test_dataset = dsets.CIFAR10(root='./data/',
-                              train=False, 
+                              train=False,
                               transform=transforms.ToTensor())
 
 # Data Loader (Input Pipeline)
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                           batch_size=100, 
+                                           batch_size=100,
                                            shuffle=True)
 
 test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
-                                          batch_size=100, 
+                                          batch_size=100,
                                           shuffle=False)
 
 # 3x3 Convolution
 def conv3x3(in_channels, out_channels, stride=1):
-    return nn.Conv2d(in_channels, out_channels, kernel_size=3, 
+    return nn.Conv2d(in_channels, out_channels, kernel_size=3,
                      stride=stride, padding=1, bias=False)
 
 # Residual Block
@@ -49,7 +49,7 @@ class ResidualBlock(nn.Module):
         self.conv2 = conv3x3(out_channels, out_channels)
         self.bn2 = nn.BatchNorm2d(out_channels)
         self.downsample = downsample
-        
+
     def forward(self, x):
         residual = x
         out = self.conv1(x)
@@ -76,7 +76,7 @@ class ResNet(nn.Module):
         self.layer3 = self.make_layer(block, 64, layers[1], 2)
         self.avg_pool = nn.AvgPool2d(8)
         self.fc = nn.Linear(64, num_classes)
-        
+
     def make_layer(self, block, out_channels, blocks, stride=1):
         downsample = None
         if (stride != 1) or (self.in_channels != out_channels):
@@ -89,7 +89,7 @@ class ResNet(nn.Module):
         for i in range(1, blocks):
             layers.append(block(out_channels, out_channels))
         return nn.Sequential(*layers)
-    
+
     def forward(self, x):
         out = self.conv(x)
         out = self.bn(out)
@@ -101,7 +101,7 @@ class ResNet(nn.Module):
         out = out.view(out.size(0), -1)
         out = self.fc(out)
         return out
-    
+
 resnet = ResNet(ResidualBlock, [3, 3, 3])
 resnet.cuda()
 
@@ -109,28 +109,28 @@ resnet.cuda()
 criterion = nn.CrossEntropyLoss()
 lr = 0.001
 optimizer = torch.optim.Adam(resnet.parameters(), lr=lr)
-    
-# Training 
+
+# Training
 for epoch in range(80):
     for i, (images, labels) in enumerate(train_loader):
         images = Variable(images.cuda())
         labels = Variable(labels.cuda())
-        
+
         # Forward + Backward + Optimize
         optimizer.zero_grad()
         outputs = resnet(images)
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
-        
+
         if (i+1) % 100 == 0:
             print ("Epoch [%d/%d], Iter [%d/%d] Loss: %.4f" %(epoch+1, 80, i+1, 500, loss.data[0]))
 
     # Decaying Learning Rate
     if (epoch+1) % 20 == 0:
         lr /= 3
-        optimizer = torch.optim.Adam(resnet.parameters(), lr=lr) 
-        
+        optimizer = torch.optim.Adam(resnet.parameters(), lr=lr)
+
 # Test
 correct = 0
 total = 0
