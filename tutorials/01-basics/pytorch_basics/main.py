@@ -12,8 +12,8 @@ from torch.autograd import Variable
 # 1. Basic autograd example 1               (Line 21 to 36)
 # 2. Basic autograd example 2               (Line 39 to 77)
 # 3. Loading data from numpy                (Line 80 to 83)
-# 4. Implementing the input pipline         (Line 86 to 113)
-# 5. Input pipline for custom dataset       (Line 116 to 138)
+# 4. Implementing the input pipeline         (Line 86 to 113)
+# 5. Input pipeline for custom dataset       (Line 116 to 138)
 # 6. Using pretrained model                 (Line 141 to 155)
 # 7. Save and load model                    (Line 158 to 165) 
 
@@ -83,7 +83,7 @@ b = torch.from_numpy(a)      # convert numpy array to torch tensor
 c = b.numpy()                # convert torch tensor to numpy array
 
 
-#===================== Implementing the input pipline =====================#
+#===================== Implementing the input pipeline =====================#
 # Download and construct dataset.
 train_dataset = dsets.CIFAR10(root='../data/',
                                train=True, 
@@ -113,7 +113,7 @@ for images, labels in train_loader:
     pass
 
 
-#===================== Input pipline for custom dataset =====================#
+#===================== Input pipeline for custom dataset =====================#
 # You should build custom dataset as below.
 class CustomDataset(data.Dataset):
     def __init__(self):
