@@ -1,4 +1,0 @@
-torch
-torchvision
-Pillow
-argparse

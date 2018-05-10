@@ -1,5 +1,0 @@
-tensorflow
-torch
-torchvision
-scipy
-numpy
