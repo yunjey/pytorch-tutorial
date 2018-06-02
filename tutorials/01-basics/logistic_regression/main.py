@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 
 
 # Hyper-parameters 
-input_size = 784
+input_size = 28 * 28    # 784
 num_classes = 10
 num_epochs = 5
 batch_size = 100
@@ -43,7 +43,7 @@ total_step = len(train_loader)
 for epoch in range(num_epochs):
     for i, (images, labels) in enumerate(train_loader):
         # Reshape images to (batch_size, input_size)
-        images = images.reshape(-1, 28*28)
+        images = images.reshape(-1, input_size)
         
         # Forward pass
         outputs = model(images)
@@ -64,7 +64,7 @@ with torch.no_grad():
     correct = 0
     total = 0
     for images, labels in test_loader:
-        images = images.reshape(-1, 28*28)
+        images = images.reshape(-1, input_size)
         outputs = model(images)
         _, predicted = torch.max(outputs.data, 1)
         total += labels.size(0)
