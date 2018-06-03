@@ -85,6 +85,7 @@ for epoch in range(num_epochs):
                    .format(epoch+1, num_epochs, i+1, total_step, loss.item()))
 
 # Test the model
+model.eval()
 with torch.no_grad():
     correct = 0
     total = 0
