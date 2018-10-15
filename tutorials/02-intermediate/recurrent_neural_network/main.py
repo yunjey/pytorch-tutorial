@@ -48,7 +48,6 @@ class RNN(nn.Module):
     def forward(self, x):
         # Set initial hidden and cell states 
         h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(device) 
-        c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(device)
         
         # Forward propagate LSTM
         out, _ = self.lstm(x, (h0, c0))  # out: tensor of shape (batch_size, seq_length, hidden_size)
