@@ -133,7 +133,7 @@ for images, labels in train_loader:
 #                5. Input pipline for custom dataset                 #
 # ================================================================== #
 
-# You should your build your custom dataset as below.
+# You should build your custom dataset as below.
 class CustomDataset(torch.utils.data.Dataset):
     def __init__(self):
         # TODO
