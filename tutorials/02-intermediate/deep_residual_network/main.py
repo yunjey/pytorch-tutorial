@@ -82,8 +82,8 @@ class ResNet(nn.Module):
         self.bn = nn.BatchNorm2d(16)
         self.relu = nn.ReLU(inplace=True)
         self.layer1 = self.make_layer(block, 16, layers[0])
-        self.layer2 = self.make_layer(block, 32, layers[0], 2)
-        self.layer3 = self.make_layer(block, 64, layers[1], 2)
+        self.layer2 = self.make_layer(block, 32, layers[1], 2)
+        self.layer3 = self.make_layer(block, 64, layers[2], 2)
         self.avg_pool = nn.AvgPool2d(8)
         self.fc = nn.Linear(64, num_classes)
         
@@ -112,7 +112,7 @@ class ResNet(nn.Module):
         out = self.fc(out)
         return out
     
-model = ResNet(ResidualBlock, [2, 2, 2, 2]).to(device)
+model = ResNet(ResidualBlock, [2, 2, 2]).to(device)
 
 
 # Loss and optimizer
