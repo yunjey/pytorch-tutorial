@@ -3,7 +3,7 @@
 import torch
 import torch.nn as nn
 import numpy as np
-from torch.nn.utils import clip_grad_norm
+from torch.nn.utils import clip_grad_norm_
 from data_utils import Dictionary, Corpus
 
 
@@ -78,7 +78,7 @@ for epoch in range(num_epochs):
         # Backward and optimize
         model.zero_grad()
         loss.backward()
-        clip_grad_norm(model.parameters(), 0.5)
+        clip_grad_norm_(model.parameters(), 0.5)
         optimizer.step()
 
         step = (i+1) // seq_length
