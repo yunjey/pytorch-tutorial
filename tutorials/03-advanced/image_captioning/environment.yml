@@ -1,0 +1,14 @@
+name: image_captioning
+
+dependencies:
+  - python=3.6
+  - pip:
+      - matplotlib
+      - nltk
+      - numpy
+      - Pillow
+      - argparse
+      - torch
+      - torchvision
+      - cython
+      - pycocotools
