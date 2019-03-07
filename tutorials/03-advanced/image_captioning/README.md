@@ -11,7 +11,7 @@ In the test phase, the encoder part is almost same as the training phase. The on
 
 
 
-## Usage 
+## Usage (train model)
 
 
 #### 1. Clone the repositories
@@ -55,5 +55,38 @@ $ python sample.py --image='png/example.png'
 
 <br>
 
-## Pretrained model
-If you do not want to train the model from scratch, you can use a pretrained model. You can download the pretrained model [here](https://www.dropbox.com/s/ne0ixz5d58ccbbz/pretrained_model.zip?dl=0) and the vocabulary file [here](https://www.dropbox.com/s/26adb7y9m98uisa/vocap.zip?dl=0). You should extract pretrained_model.zip to `./models/` and vocab.pkl to `./data/` using `unzip` command.
+## Use pre-trained model
+If you do not want to train the model from scratch, you can use a pretrained model.
+
+#### 1. Install dependencies
+
+Example for using Conda:
+```bash
+$ conda env create -f environment.yml
+$ source activate image_captioning
+```
+
+#### 2. Download model and vocabulary
+
+Download the pre-trained model [here](https://www.dropbox.com/s/ne0ixz5d58ccbbz/pretrained_model.zip?dl=0) 
+and the vocabulary file [here](https://www.dropbox.com/s/26adb7y9m98uisa/vocap.zip?dl=0).
+You should extract pretrained_model.zip to `./models/` and vocab.pkl to `./data/` using `unzip` command.
+
+```bash
+$ mkdir models
+$ mkdir data
+$ wget https://www.dropbox.com/s/ne0ixz5d58ccbbz/pretrained_model.zip?dl=0 -O models/pretrained_model.zip
+$ wget https://www.dropbox.com/s/26adb7y9m98uisa/vocap.zip?dl=0 -O data/vocap.zip
+$ unzip models/pretrained_model.zip -d models/
+$ unzip data/vocap.zip -d data/
+```
+
+### 3. Test the model 
+
+```bash
+$ python sample.py \
+--encoder_path='models/encoder-5-3000.pkl' \
+--decoder_path='models/decoder-5-3000.pkl' \
+--vocab_path='data/vocab.pkl' \
+--image='png/example.png'
+```
