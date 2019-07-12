@@ -1,7 +1,8 @@
 import argparse
 import os
 from PIL import Image
-
+import imghdr
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 def resize_image(image, size):
     """Resize an image to the given size."""
@@ -16,9 +17,10 @@ def resize_images(image_dir, output_dir, size):
     num_images = len(images)
     for i, image in enumerate(images):
         with open(os.path.join(image_dir, image), 'r+b') as f:
-            with Image.open(f) as img:
-                img = resize_image(img, size)
-                img.save(os.path.join(output_dir, image), img.format)
+            if imghdr.what(os.path.join(image_dir, image)) != None:
+                with Image.open(f) as img:
+                    img = resize_image(img, size)
+                     img.save(os.path.join(output_dir, image), img.format)
         if (i+1) % 100 == 0:
             print ("[{}/{}] Resized the images and saved into '{}'."
                    .format(i+1, num_images, output_dir))
