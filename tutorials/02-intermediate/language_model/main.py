@@ -76,7 +76,7 @@ for epoch in range(num_epochs):
         loss = criterion(outputs, targets.reshape(-1))
         
         # Backward and optimize
-        model.zero_grad()
+        optimizer.zero_grad()
         loss.backward()
         clip_grad_norm_(model.parameters(), 0.5)
         optimizer.step()
