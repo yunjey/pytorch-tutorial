@@ -168,6 +168,8 @@ for param in resnet.parameters():
     param.requires_grad = False
 
 # Replace the top layer for finetuning.
+# top layer (or fully connected layer) refers to
+# the last layer before the output of the network
 resnet.fc = nn.Linear(resnet.fc.in_features, 100)  # 100 is an example.
 
 # Forward pass.
