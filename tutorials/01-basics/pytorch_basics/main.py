@@ -137,7 +137,7 @@ for images, labels in train_loader:
 class CustomDataset(torch.utils.data.Dataset):
     def __init__(self):
         # TODO
-        # 1. Initialize file paths or a list of file names. 
+        # 1. Initialize file paths or a list of file names.
         pass
     def __getitem__(self, index):
         # TODO
@@ -146,13 +146,15 @@ class CustomDataset(torch.utils.data.Dataset):
         # 3. Return a data pair (e.g. image and label).
         pass
     def __len__(self):
-        # You should change 0 to the total size of your dataset.
-        return 0 
+        # You should change 0 to something unequal to 0
+        # (e.g. the total size of your dataset),
+        # if you want this file to run without errors
+        return 0
 
-# You can then use the prebuilt data loader. 
+# You can then use the prebuilt data loader.
 custom_dataset = CustomDataset()
 train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
-                                           batch_size=64, 
+                                           batch_size=64,
                                            shuffle=True)
 
 
