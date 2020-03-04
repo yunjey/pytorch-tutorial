@@ -169,7 +169,7 @@ resnet = torchvision.models.resnet18(pretrained=True)
 for param in resnet.parameters():
     param.requires_grad = False
 
-# Replace the top layer for finetuning.
+# Replace the top layer for finetuning.??
 resnet.fc = nn.Linear(resnet.fc.in_features, 100)  # 100 is an example.
 
 # Forward pass.
