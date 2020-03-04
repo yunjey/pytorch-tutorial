@@ -34,9 +34,9 @@ y = w * x + b    # y = 2 * x + 3
 y.backward()
 
 # Print out the gradients.
-print(x.grad)    # x.grad = 2 
-print(w.grad)    # w.grad = 1 
-print(b.grad)    # b.grad = 1 
+print(x.grad)    # x.grad = 2, equivalent to dy/dx[given w,b]
+print(w.grad)    # w.grad = 1, equivalent to dy/dw[given x,b]
+print(b.grad)    # b.grad = 1, equivalent to dy/db[given w,x]
 
 
 # ================================================================== #
