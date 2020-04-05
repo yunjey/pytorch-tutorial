@@ -98,7 +98,7 @@ z = y.numpy()
 
 
 # ================================================================== #
-#                         4. Input pipline                           #
+#                         4. Input pipeline                           #
 # ================================================================== #
 
 # Download and construct CIFAR-10 dataset.
@@ -130,7 +130,7 @@ for images, labels in train_loader:
 
 
 # ================================================================== #
-#                5. Input pipline for custom dataset                 #
+#                5. Input pipeline for custom dataset                 #
 # ================================================================== #
 
 # You should build your custom dataset as below.
