@@ -32,7 +32,6 @@ This repository provides tutorial code for deep learning researchers to learn [P
 * [TensorBoard in PyTorch](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/04-utils/tensorboard)
 
 
-
 <br/>
 
 ## Getting Started
@@ -52,6 +51,4 @@ $ python main.py
 
 <br/>
 
-
-## Author
-Yunjey Choi/ [@yunjey](https://github.com/yunjey)
+If you are interested in generative models, please check our recent work [StarGAN v2](https://github.com/clovaai/stargan-v2).
