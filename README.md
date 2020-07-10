@@ -32,7 +32,6 @@ This repository provides tutorial code for deep learning researchers to learn [P
 * [TensorBoard in PyTorch](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/04-utils/tensorboard)
 
 
-
 <br/>
 
 ## Getting Started
@@ -50,8 +49,4 @@ $ python main.py
 
 
 
-<br/>
 
-
-## Author
-Yunjey Choi/ [@yunjey](https://github.com/yunjey)
