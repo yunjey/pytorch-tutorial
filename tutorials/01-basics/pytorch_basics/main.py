@@ -93,9 +93,11 @@ x = np.array([[1, 2], [3, 4]])
 # Convert the numpy array to a torch tensor.
 y = torch.from_numpy(x)
 
-# Convert the torch tensor to a numpy array.
+# Convert the torch tensor back to a numpy array.
 z = y.numpy()
 
+# x and z have identical values inside
+assert np.all(x == z)
 
 # ================================================================== #
 #                         4. Input pipeline                           #
