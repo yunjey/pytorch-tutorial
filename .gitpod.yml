@@ -1,0 +1,9 @@
+tasks:
+  - init: 'echo "TODO: Replace with init/build command"'
+    command: 'echo "TODO: Replace with command to start project"'
+
+vscode:
+  extensions:
+    - vscodevim.vim@1.19.2:C+cKTLU9c7GpQtHGKuFgKA==
+    - mtayllan.moonokai@0.0.4:TehdQgNtm+Y4YxoxIVAWiQ==
+    - gulajavaministudio.mayukaithemevsc@2.0.5:7enWKGQZvbdnI+I0JY4NHw==
