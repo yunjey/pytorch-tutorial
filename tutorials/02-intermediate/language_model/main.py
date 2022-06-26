@@ -89,7 +89,7 @@ for epoch in range(num_epochs):
 # Test the model
 with torch.no_grad():
     with open('sample.txt', 'w') as f:
-        # Set intial hidden ane cell states
+        # Set intial hidden and cell states
         state = (torch.zeros(num_layers, 1, hidden_size).to(device),
                  torch.zeros(num_layers, 1, hidden_size).to(device))
 
