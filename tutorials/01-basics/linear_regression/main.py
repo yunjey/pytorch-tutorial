@@ -26,11 +26,12 @@ model = nn.Linear(input_size, output_size)
 criterion = nn.MSELoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)  
 
+# Convert numpy arrays to torch tensors
+inputs = torch.from_numpy(x_train)
+targets = torch.from_numpy(y_train)
+
 # Train the model
 for epoch in range(num_epochs):
-    # Convert numpy arrays to torch tensors
-    inputs = torch.from_numpy(x_train)
-    targets = torch.from_numpy(y_train)
 
     # Forward pass
     outputs = model(inputs)
@@ -45,7 +46,7 @@ for epoch in range(num_epochs):
         print ('Epoch [{}/{}], Loss: {:.4f}'.format(epoch+1, num_epochs, loss.item()))
 
 # Plot the graph
-predicted = model(torch.from_numpy(x_train)).detach().numpy()
+predicted = model(inputs).detach().numpy()
 plt.plot(x_train, y_train, 'ro', label='Original data')
 plt.plot(x_train, predicted, label='Fitted line')
 plt.legend()
