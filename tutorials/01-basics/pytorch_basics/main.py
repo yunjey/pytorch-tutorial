@@ -1,3 +1,5 @@
+####### 수정 ########
+
 import torch 
 import torchvision
 import torch.nn as nn
@@ -28,6 +30,8 @@ w = torch.tensor(2., requires_grad=True)
 b = torch.tensor(3., requires_grad=True)
 
 # Build a computational graph.
+# 계산 그래프의 개념은 직접 역전파 변화도를 쓸 필요가 없게 해주며 효율적인 딥러닝 프로그래밍에 필수적이다.
+# 출력을 내기 위해 어떻게 데이터를 결합했는지에 대한 설명서 이다.
 y = w * x + b    # y = 2 * x + 3
 
 # Compute gradients.
@@ -90,7 +94,7 @@ print('loss after 1 step optimization: ', loss.item())
 # Create a numpy array.
 x = np.array([[1, 2], [3, 4]])
 
-# Convert the numpy array to a torch tensor.
+# Convert the numpy array to a torch tensor.ㅊ
 y = torch.from_numpy(x)
 
 # Convert the torch tensor to a numpy array.
@@ -112,6 +116,9 @@ image, label = train_dataset[0]
 print (image.size())
 print (label)
 
+imege, label2 = train_dataset[0]
+print (image.size())
+print (label2)
 # Data loader (this provides queues and threads in a very simple way).
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                            batch_size=64, 
@@ -121,6 +128,7 @@ train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
 data_iter = iter(train_loader)
 
 # Mini-batch images and labels.
+# 미니배치 과정
 images, labels = data_iter.next()
 
 # Actual usage of the data loader is as below.
@@ -168,6 +176,7 @@ for param in resnet.parameters():
     param.requires_grad = False
 
 # Replace the top layer for finetuning.
+# 미세조정 작업
 resnet.fc = nn.Linear(resnet.fc.in_features, 100)  # 100 is an example.
 
 # Forward pass.
@@ -181,6 +190,7 @@ print (outputs.size())     # (64, 100)
 # ================================================================== #
 
 # Save and load the entire model.
+# 전체 모델 저장하고 불러오기
 torch.save(resnet, 'model.ckpt')
 model = torch.load('model.ckpt')
 
