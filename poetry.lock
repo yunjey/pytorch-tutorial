@@ -253,19 +253,19 @@ python-versions = ">=3.8.0"
 filelock = "*"
 jinja2 = "*"
 networkx = "*"
-nvidia-cublas-cu11 = {version = "11.10.3.66", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-cuda-cupti-cu11 = {version = "11.7.101", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-cuda-nvrtc-cu11 = {version = "11.7.99", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-cuda-runtime-cu11 = {version = "11.7.99", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-cudnn-cu11 = {version = "8.5.0.96", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-cufft-cu11 = {version = "10.9.0.58", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-curand-cu11 = {version = "10.2.10.91", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-cusolver-cu11 = {version = "11.4.0.1", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-cusparse-cu11 = {version = "11.7.4.91", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-nccl-cu11 = {version = "2.14.3", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
-nvidia-nvtx-cu11 = {version = "11.7.91", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
+nvidia-cublas-cu11 = { version = "11.10.3.66", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-cuda-cupti-cu11 = { version = "11.7.101", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-cuda-nvrtc-cu11 = { version = "11.7.99", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-cuda-runtime-cu11 = { version = "11.7.99", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-cudnn-cu11 = { version = "8.5.0.96", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-cufft-cu11 = { version = "10.9.0.58", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-curand-cu11 = { version = "10.2.10.91", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-cusolver-cu11 = { version = "11.4.0.1", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-cusparse-cu11 = { version = "11.7.4.91", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-nccl-cu11 = { version = "2.14.3", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
+nvidia-nvtx-cu11 = { version = "11.7.91", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
 sympy = "*"
-triton = {version = "2.0.0", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
+triton = { version = "2.0.0", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\"" }
 typing-extensions = "*"
 
 [package.extras]
@@ -350,8 +350,8 @@ cmake = []
 filelock = []
 idna = []
 jinja2 = [
-    {file = "Jinja2-3.1.2-py3-none-any.whl", hash = "sha256:6088930bfe239f0e6710546ab9c19c9ef35e29792895fed6e6e31a023a182a61"},
-    {file = "Jinja2-3.1.2.tar.gz", hash = "sha256:31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852"},
+    { file = "Jinja2-3.1.2-py3-none-any.whl", hash = "sha256:6088930bfe239f0e6710546ab9c19c9ef35e29792895fed6e6e31a023a182a61" },
+    { file = "Jinja2-3.1.2.tar.gz", hash = "sha256:31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852" },
 ]
 lit = []
 markupsafe = []
