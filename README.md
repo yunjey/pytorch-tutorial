@@ -43,7 +43,7 @@ finish [Official Pytorch Tutorial](http://pytorch.org/tutorials/beginner/deep_le
 ## Getting Started
 
 ```bash
-$ git clone https://github.com/s3m3dov/pytorch-tutorial.git
+$ git clone https://github.com/yunjey/pytorch-tutorial.git
 $ cd pytorch-tutorial/tutorials/PATH_TO_PROJECT
 $ python main.py
 ```
