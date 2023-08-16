@@ -121,7 +121,7 @@ train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
 data_iter = iter(train_loader)
 
 # Mini-batch images and labels.
-images, labels = data_iter.next()
+images, labels = next(data_iter)
 
 # Actual usage of the data loader is as below.
 for images, labels in train_loader:
@@ -167,11 +167,16 @@ resnet = torchvision.models.resnet18(pretrained=True)
 for param in resnet.parameters():
     param.requires_grad = False
 
-# Replace the top layer for finetuning.
+# Replace the top layer for fine-tuning.
+# Replace the last fully connected layer of ResNet with a new linear layer
+# that has the specified input feature count and output feature count.
+# In this example, the input feature count is resnet.fc.in_features, and the
+# output feature count is 100.
 resnet.fc = nn.Linear(resnet.fc.in_features, 100)  # 100 is an example.
 
+
 # Forward pass.
-images = torch.randn(64, 3, 224, 224)
+images = torch.randn(64, 3, 224, 224)   # batch size, channel, height, width
 outputs = resnet(images)
 print (outputs.size())     # (64, 100)
 
