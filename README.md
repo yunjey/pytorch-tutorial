@@ -41,6 +41,11 @@ $ cd pytorch-tutorial/tutorials/PATH_TO_PROJECT
 $ python main.py
 ```
 
+Or if you’d prefer to skip the local setup, you can get this project running instantly with Codeanywhere. Just click the button below to open it in browser-based cloud IDE.
+
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/yunjey/pytorch-tutorial)
+
+
 <br/>
 
 ## Dependencies
