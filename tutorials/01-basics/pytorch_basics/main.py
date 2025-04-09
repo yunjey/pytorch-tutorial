@@ -121,7 +121,7 @@ train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
 data_iter = iter(train_loader)
 
 # Mini-batch images and labels.
-images, labels = data_iter.next()
+images, labels = next(data_iter)
 
 # Actual usage of the data loader is as below.
 for images, labels in train_loader:
