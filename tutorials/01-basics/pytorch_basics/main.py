@@ -1,4 +1,4 @@
-import torch 
+import torch
 import torchvision
 import torch.nn as nn
 import numpy as np
@@ -15,7 +15,7 @@ import torchvision.transforms as transforms
 # 4. Input pipline                          (Line 104 to 129)
 # 5. Input pipline for custom dataset       (Line 136 to 156)
 # 6. Pretrained model                       (Line 163 to 176)
-# 7. Save and load model                    (Line 183 to 189) 
+# 7. Save and load model                    (Line 183 to 189)
 
 
 # ================================================================== #
@@ -23,20 +23,20 @@ import torchvision.transforms as transforms
 # ================================================================== #
 
 # Create tensors.
-x = torch.tensor(1., requires_grad=True)
-w = torch.tensor(2., requires_grad=True)
-b = torch.tensor(3., requires_grad=True)
+x = torch.tensor(1.0, requires_grad=True)
+w = torch.tensor(2.0, requires_grad=True)
+b = torch.tensor(3.0, requires_grad=True)
 
 # Build a computational graph.
-y = w * x + b    # y = 2 * x + 3
+y = w * x + b  # y = 2 * x + 3
 
 # Compute gradients.
 y.backward()
 
 # Print out the gradients.
-print(x.grad)    # x.grad = 2 
-print(w.grad)    # w.grad = 1 
-print(b.grad)    # b.grad = 1 
+print(x.grad)  # x.grad = 2
+print(w.grad)  # w.grad = 1
+print(b.grad)  # b.grad = 1
 
 
 # ================================================================== #
@@ -49,8 +49,8 @@ y = torch.randn(10, 2)
 
 # Build a fully connected layer.
 linear = nn.Linear(3, 2)
-print ('w: ', linear.weight)
-print ('b: ', linear.bias)
+print("w: ", linear.weight)
+print("b: ", linear.bias)
 
 # Build loss function and optimizer.
 criterion = nn.MSELoss()
@@ -61,14 +61,14 @@ pred = linear(x)
 
 # Compute loss.
 loss = criterion(pred, y)
-print('loss: ', loss.item())
+print("loss: ", loss.item())
 
 # Backward pass.
 loss.backward()
 
 # Print out the gradients.
-print ('dL/dw: ', linear.weight.grad) 
-print ('dL/db: ', linear.bias.grad)
+print("dL/dw: ", linear.weight.grad)
+print("dL/db: ", linear.bias.grad)
 
 # 1-step gradient descent.
 optimizer.step()
@@ -80,7 +80,7 @@ optimizer.step()
 # Print out the loss after 1-step gradient descent.
 pred = linear(x)
 loss = criterion(pred, y)
-print('loss after 1 step optimization: ', loss.item())
+print("loss after 1 step optimization: ", loss.item())
 
 
 # ================================================================== #
@@ -102,20 +102,19 @@ z = y.numpy()
 # ================================================================== #
 
 # Download and construct CIFAR-10 dataset.
-train_dataset = torchvision.datasets.CIFAR10(root='../../data/',
-                                             train=True, 
-                                             transform=transforms.ToTensor(),
-                                             download=True)
+train_dataset = torchvision.datasets.CIFAR10(
+    root="../../data/", train=True, transform=transforms.ToTensor(), download=True
+)
 
 # Fetch one data pair (read data from disk).
 image, label = train_dataset[0]
-print (image.size())
-print (label)
+print(image.size())
+print(label)
 
 # Data loader (this provides queues and threads in a very simple way).
-train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                           batch_size=64, 
-                                           shuffle=True)
+train_loader = torch.utils.data.DataLoader(
+    dataset=train_dataset, batch_size=64, shuffle=True
+)
 
 # When iteration starts, queue and thread start to load data from files.
 data_iter = iter(train_loader)
@@ -133,27 +132,31 @@ for images, labels in train_loader:
 #                5. Input pipeline for custom dataset                 #
 # ================================================================== #
 
+
 # You should build your custom dataset as below.
 class CustomDataset(torch.utils.data.Dataset):
     def __init__(self):
         # TODO
-        # 1. Initialize file paths or a list of file names. 
+        # 1. Initialize file paths or a list of file names.
         pass
+
     def __getitem__(self, index):
         # TODO
         # 1. Read one data from file (e.g. using numpy.fromfile, PIL.Image.open).
         # 2. Preprocess the data (e.g. torchvision.Transform).
         # 3. Return a data pair (e.g. image and label).
         pass
+
     def __len__(self):
         # You should change 0 to the total size of your dataset.
-        return 0 
+        return 0
 
-# You can then use the prebuilt data loader. 
+
+# You can then use the prebuilt data loader.
 custom_dataset = CustomDataset()
-train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
-                                           batch_size=64, 
-                                           shuffle=True)
+train_loader = torch.utils.data.DataLoader(
+    dataset=custom_dataset, batch_size=64, shuffle=True
+)
 
 
 # ================================================================== #
@@ -173,7 +176,7 @@ resnet.fc = nn.Linear(resnet.fc.in_features, 100)  # 100 is an example.
 # Forward pass.
 images = torch.randn(64, 3, 224, 224)
 outputs = resnet(images)
-print (outputs.size())     # (64, 100)
+print(outputs.size())  # (64, 100)
 
 
 # ================================================================== #
@@ -181,9 +184,9 @@ print (outputs.size())     # (64, 100)
 # ================================================================== #
 
 # Save and load the entire model.
-torch.save(resnet, 'model.ckpt')
-model = torch.load('model.ckpt')
+torch.save(resnet, "model.ckpt")
+model = torch.load("model.ckpt")
 
 # Save and load only the model parameters (recommended).
-torch.save(resnet.state_dict(), 'params.ckpt')
-resnet.load_state_dict(torch.load('params.ckpt'))
+torch.save(resnet.state_dict(), "params.ckpt")
+resnet.load_state_dict(torch.load("params.ckpt"))
