@@ -1,3 +1,12 @@
+
+## uv
+```bash
+uv venv --python 3.11
+uv venv
+source .venv/bin/activate
+uv add xxx 
+uv sync 
+```
 <p align="center"><img width="40%" src="logo/pytorch_logo_2018.svg" /></p>
 
 --------------------------------------------------------------------------------

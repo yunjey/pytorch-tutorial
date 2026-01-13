@@ -1,5 +1,17 @@
 *.pkl
 *.zip
+*.pth
+*.txt
+*.ckpt
+*.pyc
+*.onnx
+*.data
+*.lock
+*/__pycache__/
+*.DS_Store
+*.idea/
+*.pytest_cache/
+*.ruff_cache/
 data/
 .ipynb_checkpoints
 

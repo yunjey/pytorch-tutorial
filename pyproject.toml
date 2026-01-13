@@ -1,0 +1,59 @@
+[project]
+name = "tutorials"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.9"
+authors = [
+    { name = "lihanghang", email = "lihanghang@guazi.com" }  # 对象格式，符合新版规范
+]
+dependencies = [
+    "matplotlib>=3.9.4",
+    "onnx>=1.19.1",
+    "onnxruntime>=1.20.1",
+    "onnxscript>=0.5.7",
+    "pandas>=2.3.3",
+    "setuptools>=80.9.0",
+    "tabulate>=0.9.0",
+    "tensordict>=0.10.0",
+    "torchvision>=0.23.0",
+]
+
+[tool.poetry.dependencies]
+aiohttp = "3.12.14"                  # 异步HTTP客户端/服务器库
+urllib3 = "2.6.2"                    # HTTP客户端库，提供连接池和线程安全
+orjson = ">=3.9.14,<4.0.0"           # 高性能JSON序列化/反序列化库
+uuid = "^1.30"                       # 用于生成和操作UUID的库
+torch = "2.8.0"                      # PyTorch核心库，深度学习框架
+contourpy = "1.3.0"                  # 用于绘制等高线的Python库，matplotlib依赖
+cycler = "0.12.1"                    # 用于生成循环样式的工具库，matplotlib依赖
+fonttools = "4.60.2"                  # 用于处理字体文件的库，matplotlib依赖
+kiwisolver = "1.4.7"                  # 用于约束求解的库，matplotlib依赖
+pyparsing = "3.3.1"                   # 用于解析字符串的库，matplotlib依赖
+importlib-resources = "6.5.2"         # 用于访问Python包资源的库
+matplotlib = "3.9.4"                  # 数据可视化库，用于创建图表和图形
+python-dateutil = "2.9.0.post0"       # 日期时间处理扩展库，提供更强大的日期操作
+six = "1.17.0"                       # Python 2和Python 3兼容性库
+click = "8.1.8"                      # 命令行界面开发库，用于创建命令行工具
+joblib = "1.5.3"                     # 用于并行计算和任务调度的库，常用于机器学习
+nltk = "3.9.2"                       # 自然语言处理工具包，包含语料库和算法
+regex = "2025.11.3"                  # 正则表达式扩展库，提供比标准re更强大的功能
+tqdm = "4.67.1"                      # 进度条库，用于显示循环和任务的进度
+pycocotools = "2.0.11"                # COCO数据集工具库，用于目标检测、分割等任务
+argparse = "1.4.0"                    # 命令行参数解析库，用于处理命令行输入
+pandas = "2.3.3"
+pytz = "2025.2"
+tzdata = "2025.3"
+tensordict = "0.10.0"
+cloudpickle = "3.1.2"
+importlib-metadata = "8.7.1"
+pyvers = "0.1.0"
+pillow = "11.3.0"
+setuptools = "80.9.0"
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.huaweicloud.com/repository/pypi/simple/"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

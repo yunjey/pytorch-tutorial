@@ -8,7 +8,9 @@ from data_utils import Dictionary, Corpus
 
 
 # Device configuration
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# 支持CUDA、MPS和CPU设备
+device = torch.device('mps' if torch.backends.mps.is_available() else 'cuda' if torch.cuda.is_available() else 'cpu')
+print(f"使用设备: {device}")
 
 # Hyper-parameters
 embed_size = 128
@@ -31,22 +33,22 @@ num_batches = ids.size(1) // seq_length
 class RNNLM(nn.Module):
     def __init__(self, vocab_size, embed_size, hidden_size, num_layers):
         super(RNNLM, self).__init__()
-        self.embed = nn.Embedding(vocab_size, embed_size)
-        self.lstm = nn.LSTM(embed_size, hidden_size, num_layers, batch_first=True)
-        self.linear = nn.Linear(hidden_size, vocab_size)
-        
+        self.embed = nn.Embedding(vocab_size, embed_size)  # 词嵌入层
+        self.lstm = nn.LSTM(embed_size, hidden_size, num_layers, batch_first=True)  # LSTM层
+        self.linear = nn.Linear(hidden_size, vocab_size)  # 输出层
+
     def forward(self, x, h):
-        # Embed word ids to vectors
-        x = self.embed(x)
-        
-        # Forward propagate LSTM
-        out, (h, c) = self.lstm(x, h)
-        
-        # Reshape output to (batch_size*sequence_length, hidden_size)
-        out = out.reshape(out.size(0)*out.size(1), out.size(2))
-        
-        # Decode hidden states of all time steps
-        out = self.linear(out)
+        # 词嵌入：将单词ID转换为向量表示
+        x = self.embed(x)  # [batch_size, seq_length, embed_size]
+
+        # LSTM前向传播
+        out, (h, c) = self.lstm(x, h)  # out: [batch_size, seq_length, hidden_size]
+
+        # 重塑输出以匹配全连接层输入格式
+        out = out.reshape(out.size(0) * out.size(1), out.size(2))  # [batch_size*seq_length, hidden_size]
+
+        # 预测下一个单词的概率分布
+        out = self.linear(out)  # [batch_size*seq_length, vocab_size]
         return out, (h, c)
 
 model = RNNLM(vocab_size, embed_size, hidden_size, num_layers).to(device)
