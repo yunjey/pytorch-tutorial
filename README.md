@@ -47,6 +47,6 @@ $ python main.py
 * [Python 2.7 or 3.5+](https://www.continuum.io/downloads)
 * [PyTorch 0.4.0+](http://pytorch.org/)
 
+---
 
-
-
+*[Mukller](https://github.com/Mukller)*
